@@ -7,6 +7,8 @@ __pycache__/
 dataset/
 processed_dataset/
 dataset.zip
+dataset/
+processed_dataset/
 
 *.pth
 *.pt
