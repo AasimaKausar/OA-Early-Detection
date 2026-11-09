@@ -1,0 +1,730 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f6fa;
+    color: #1c2d42;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: #14283f;
+    color: white;
+    padding: 25px 8%;
+    border-bottom: 4px solid #29b99a;
+}
+
+header h1 {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #cbd8e5;
+}
+
+/* Main content */
+main {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+section {
+    background: white;
+    padding: 28px;
+    border: 1px solid #e0e8ef;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(20, 40, 63, 0.05);
+}
+
+section h2 {
+    color: #14283f;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+section p {
+    color: #64748b;
+    margin-bottom: 16px;
+}
+
+/* Upload form */
+form {
+    margin-top: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px dashed #9aabbc;
+    border-radius: 8px;
+    background: #f8fafc;
+    margin-bottom: 20px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: #16876f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #106b58;
+}
+
+/* Results */
+section:nth-child(2) {
+    border-top: 4px solid #29b99a;
+}
+
+section:nth-child(2) p {
+    padding: 10px;
+    background: #f4f8fb;
+    border-radius: 6px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background: #14283f;
+    color: white;
+    padding: 22px 15px;
+    font-size: 13px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Mobile layout */
+@media (max-width: 750px) {
+    main {
+        grid-template-columns: 1fr;
+        margin: 25px auto;
+    }
+
+    header {
+        padding: 22px 5%;
+    }
+}
+
+
+/* Keep the image and analysis results side by side */
+main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    width: min(1100px, 94%);
+    margin: 30px auto;
+}
+
+/* Keep both sections visible */
+.upload-section,
+.results-section {
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 24px;
+    border-radius: 12px;
+}
+
+/* Display the X-ray at a consistent size */
+#imagePreview {
+    display: none;
+    width: 100%;
+    max-width: 420px;
+    max-height: 450px;
+    height: auto;
+    object-fit: contain;
+    margin: 16px auto;
+}
+
+/* Center the preview */
+.preview-container {
+    text-align: center;
+}
+
+/* Stack the sections on smaller screens */
+@media (max-width: 700px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
+
+.download-report-button {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 12px 20px;
+    background-color: #174A7E;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.download-report-button:hover {
+    background-color: #10365C;
+}
+
+
+/* ==============================
+   DASHBOARD HEADER
+============================== */
+
+.dashboard-header {
+    padding: 22px 5%;
+    background: #174A7E;
+    color: white;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+}
+
+.dashboard-header p {
+    margin-bottom: 0;
+}
+
+
+/* ==============================
+   NAVIGATION
+============================== */
+
+.main-navigation {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    padding: 15px 5%;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.main-navigation a {
+    color: #174A7E;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-navigation a:hover,
+.main-navigation a.active {
+    color: #087CC1;
+}
+
+.nav-disabled {
+    color: #999;
+    font-size: 14px;
+}
+
+
+/* ==============================
+   DASHBOARD CONTAINER
+============================== */
+
+.dashboard-container {
+    display: block;
+    width: min(1150px, 92%);
+    margin: 30px auto;
+}
+
+
+/* ==============================
+   WELCOME SECTION
+============================== */
+
+.welcome-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 30px;
+    background: #EAF3FA;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.welcome-section h2 {
+    color: #174A7E;
+}
+
+.welcome-section p {
+    max-width: 650px;
+    line-height: 1.6;
+}
+
+.primary-button {
+    display: inline-block;
+    padding: 13px 22px;
+    background: #174A7E;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.primary-button:hover {
+    background: #10365C;
+}
+
+
+/* ==============================
+   DASHBOARD CARDS
+============================== */
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}
+
+.card-icon {
+    font-size: 32px;
+}
+
+.dashboard-card h3 {
+    color: #174A7E;
+}
+
+.dashboard-card p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.dashboard-card a {
+    color: #087CC1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* ==============================
+   DASHBOARD PANELS
+============================== */
+
+.dashboard-panel {
+    background: white;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.dashboard-panel h2 {
+    color: #174A7E;
+}
+
+
+/* ==============================
+   WORKFLOW
+============================== */
+
+.workflow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.workflow-step {
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+}
+
+.workflow-step span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: #174A7E;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.workflow-step h3 {
+    color: #174A7E;
+    font-size: 16px;
+}
+
+.workflow-step p {
+    color: #666;
+    font-size: 14px;
+}
+
+.workflow-arrow {
+    color: #087CC1;
+    font-size: 25px;
+}
+
+
+/* ==============================
+   KL GRADE SCALE
+============================== */
+
+.grade-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.grade-item {
+    text-align: center;
+    padding: 18px 8px;
+    background: #EAF3FA;
+    border-radius: 9px;
+}
+
+.grade-item h3 {
+    color: #174A7E;
+}
+
+.grade-item p {
+    color: #555;
+}
+
+
+/* ==============================
+   UPCOMING FEATURES
+============================== */
+
+.upcoming-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.upcoming-grid > div {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+}
+
+.upcoming-grid h3 {
+    color: #174A7E;
+}
+
+.upcoming-grid p {
+    line-height: 1.6;
+}
+
+.upcoming-grid span {
+    color: #777;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* ==============================
+   DISCLAIMER
+============================== */
+
+.medical-disclaimer {
+    padding: 15px;
+    background: #FFF6E5;
+    border-radius: 8px;
+    color: #76551B;
+    line-height: 1.6;
+}
+
+
+/* ==============================
+   RESPONSIVE DESIGN
+============================== */
+
+@media (max-width: 750px) {
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .grade-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .upcoming-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workflow {
+        flex-direction: column;
+    }
+
+    .workflow-arrow {
+        transform: rotate(90deg);
+    }
+
+    .welcome-section {
+        align-items: flex-start;
+    }
+
+}
+
+/* ==========================================
+   PATIENT REGISTRATION BUTTON
+========================================== */
+
+.register-patient-button {
+    width: 100%;
+    padding: 14px 20px;
+    background: #176b87;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 15px 0 20px;
+    transition: 0.3s ease;
+}
+
+.register-patient-button:hover {
+    background: #10536b;
+    transform: translateY(-2px);
+}
+
+.register-patient-button span {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+
+/* ==========================================
+   PATIENT FORM
+========================================== */
+
+.patient-form {
+    background: #f4f9fc;
+    border: 1px solid #d5e5ed;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    animation: formAppear 0.3s ease;
+}
+
+.patient-form h3 {
+    color: #176b87;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.patient-form label {
+    display: block;
+    font-weight: 600;
+    margin: 12px 0 7px;
+    color: #333;
+}
+
+.patient-form input,
+.patient-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5df;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: white;
+}
+
+.patient-form input:focus,
+.patient-form select:focus {
+    outline: none;
+    border-color: #176b87;
+    box-shadow: 0 0 4px rgba(23, 107, 135, 0.25);
+}
+
+.registration-note {
+    color: #666;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+
+/* ==========================================
+   FORM ANIMATION
+========================================== */
+
+@keyframes formAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* REGISTER PATIENT BUTTON */
+
+.register-patient-button {
+    width: 100%;
+    padding: 14px 20px;
+    background: #176b87;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 15px 0 20px;
+    transition: 0.3s ease;
+}
+
+.register-patient-button:hover {
+    background: #10536b;
+    transform: translateY(-2px);
+}
+
+/* PATIENT FORM */
+
+.patient-form {
+    background: #f4f9fc;
+    border: 1px solid #d5e5ed;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.patient-form h3 {
+    color: #176b87;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.patient-form label {
+    display: block;
+    font-weight: 600;
+    margin: 12px 0 7px;
+    color: #333;
+}
+
+.patient-form input,
+.patient-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5df;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: white;
+}
+
+.registration-note {
+    color: #666;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+/* IMAGE UPLOAD */
+
+.upload-box {
+    background: #f4f9fc;
+    border: 2px dashed #176b87;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.upload-box label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.upload-box input[type="file"] {
+    width: 100%;
+    padding: 10px;
+}
+
+#fileMessage {
+    color: #555;
+    font-size: 14px;
+}
+
+.image-preview-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#imagePreview {
+    max-width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin: 10px auto;
+}
+
+/* PROCESS IMAGE BUTTON */
+
+.process-button {
+    width: 100%;
+    padding: 14px;
+    background: #176b87;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.process-button:hover {
+    background: #10536b;
+}
+.history-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.history-header h2 {
+    margin: 0;
+}
+
+.history-header p {
+    margin: 0;
+    color: #666;
+}

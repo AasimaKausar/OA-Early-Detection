@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OA Vision AI | Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="dashboard-header">
+        <div>
+            <h1>OA Vision AI</h1>
+            <p>AI-Assisted Osteoarthritis Detection System</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+   <nav class="main-navigation">
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('home') }}">AI Analysis</a>
+    <a href="{{ url_for('history') }}">History</a>
+    <a href="{{ url_for('performance') }}">Performance</a>
+</nav>
+    <!-- MAIN DASHBOARD -->
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+            <div>
+                <h2>Welcome to OA Vision AI</h2>
+
+                <p>
+                    An AI-assisted system for analysing knee X-ray images
+                    and predicting osteoarthritis Kellgren-Lawrence grades.
+                </p>
+            </div>
+
+            <a href="{{ url_for('home') }}"
+               class="primary-button">
+                Start New Analysis
+            </a>
+        </section>
+
+
+        <!-- SUMMARY CARDS -->
+        <section class="dashboard-cards">
+
+            <div class="dashboard-card">
+                <div class="card-icon">🩻</div>
+
+                <h3>AI Image Analysis</h3>
+
+                <p>
+                    Upload and analyse knee X-ray images using
+                    the trained AI model.
+                </p>
+
+                <a href="{{ url_for('home') }}">
+                    Analyse Image →
+                </a>
+            </div>
+
+
+            <div class="dashboard-card">
+                <div class="card-icon">📊</div>
+
+                <h3>KL Grade Prediction</h3>
+
+                <p>
+                    Predicts one of five Kellgren-Lawrence grades
+                    from Grade 0 to Grade 4.
+                </p>
+
+                <a href="{{ url_for('home') }}">
+                    View Analysis →
+                </a>
+            </div>
+
+
+            <div class="dashboard-card">
+                <div class="card-icon">📄</div>
+
+                <h3>PDF Report</h3>
+
+                <p>
+                    Generate a downloadable PDF report
+                    after successful image analysis.
+                </p>
+
+                <a href="{{ url_for('home') }}">
+                    Generate Report →
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- WORKFLOW -->
+        <section class="dashboard-panel">
+
+            <h2>How OA Vision AI Works</h2>
+
+            <div class="workflow">
+
+                <div class="workflow-step">
+                    <span>1</span>
+                    <h3>Upload Image</h3>
+                    <p>Select a knee X-ray image.</p>
+                </div>
+
+                <div class="workflow-arrow">→</div>
+
+                <div class="workflow-step">
+                    <span>2</span>
+                    <h3>Image Processing</h3>
+                    <p>Prepare the image for AI analysis.</p>
+                </div>
+
+                <div class="workflow-arrow">→</div>
+
+                <div class="workflow-step">
+                    <span>3</span>
+                    <h3>AI Prediction</h3>
+                    <p>Predict the KL grade.</p>
+                </div>
+
+                <div class="workflow-arrow">→</div>
+
+                <div class="workflow-step">
+                    <span>4</span>
+                    <h3>PDF Report</h3>
+                    <p>Generate the analysis report.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- KL GRADING SCALE -->
+        <section class="dashboard-panel">
+
+            <h2>Kellgren-Lawrence (KL) Grading Scale</h2>
+
+            <p>
+                The system predicts one of five KL grades.
+                These grades describe radiographic features
+                associated with osteoarthritis.
+            </p>
+
+            <div class="grade-grid">
+
+                <div class="grade-item">
+                    <h3>Grade 0</h3>
+                    <p>Normal</p>
+                </div>
+
+                <div class="grade-item">
+                    <h3>Grade 1</h3>
+                    <p>Doubtful</p>
+                </div>
+
+                <div class="grade-item">
+                    <h3>Grade 2</h3>
+                    <p>Mild</p>
+                </div>
+
+                <div class="grade-item">
+                    <h3>Grade 3</h3>
+                    <p>Moderate</p>
+                </div>
+
+                <div class="grade-item">
+                    <h3>Grade 4</h3>
+                    <p>Severe</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FUTURE FEATURES -->
+        <section class="dashboard-panel">
+
+            <h2>Upcoming Features</h2>
+
+            <div class="upcoming-grid">
+
+                <div>
+                    <h3>📁 Analysis History</h3>
+                    <p>
+                        Store and view previously analysed X-ray images
+                        and their prediction reports.
+                    </p>
+                    <span>Coming Soon</span>
+                </div>
+
+                <div>
+                    <h3>📈 Model Performance</h3>
+                    <p>
+                        View accuracy, precision, recall, F1-score
+                        and confusion matrix.
+                    </p>
+                    <span>Coming Soon</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <p class="medical-disclaimer">
+            Important: OA Vision AI is a research prototype.
+            Its predictions are not a confirmed medical diagnosis.
+            Consult a qualified healthcare professional for medical interpretation.
+        </p>
+
+    </main>
+
+
+    <footer>
+        <p>OA Vision AI | Research Prototype</p>
+    </footer>
+
+</body>
+</html>

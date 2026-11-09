@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OA Vision AI - Performance</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>OA Vision AI</h1>
+    <p>AI-Assisted Osteoarthritis Detection System</p>
+</header>
+
+<nav class="main-navigation">
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('home') }}">AI Analysis</a>
+    <a href="{{ url_for('history') }}">History</a>
+    <a href="{{ url_for('performance') }}" class="active">Performance</a>
+</nav>
+
+<main class="dashboard-container">
+
+    <h2>Model Performance</h2>
+
+    <p>Evaluation of the EfficientNet-B0 + ECA model.</p>
+
+    <section class="dashboard-card">
+
+        <h3>Model Evaluation Metrics</h3>
+
+        <p>Accuracy: Awaiting evaluation data</p>
+        <p>Precision: Awaiting evaluation data</p>
+        <p>Recall: Awaiting evaluation data</p>
+        <p>F1-score: Awaiting evaluation data</p>
+
+        <p>
+            The actual evaluation results will be connected
+            from your model testing code.
+        </p>
+
+    </section>
+
+    <a href="{{ url_for('home') }}" class="primary-button">
+        Start New Analysis
+    </a>
+
+</main>
+
+<footer>
+    <p>OA Vision AI | Research Prototype</p>
+</footer>
+
+</body>
+</html>

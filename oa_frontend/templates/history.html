@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patient History | OA Vision AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* MAIN HISTORY SECTION */
+
+        .history-container {
+            width: 100%;
+            margin: 35px auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* PATIENT HISTORY HEADING */
+
+        .history-header {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto 25px;
+        }
+
+        .history-header h2 {
+            color: #176b87;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .history-header p {
+            color: #666;
+            text-align: center;
+        }
+
+        /* PATIENT RECORD BOX */
+
+        .history-table-container {
+            width: 100%;
+            max-width: 1450px;
+            margin: 0 auto 25px;
+            padding: 15px;
+            overflow-x: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+            border-top: 4px solid #176b87;
+        }
+
+        /* PATIENT TABLE */
+
+        .history-table {
+            width: 100%;
+            min-width: 1200px;
+            border-collapse: collapse;
+            table-layout: fixed;
+            margin: auto;
+            text-align: center;
+        }
+
+        /* TABLE HEADINGS */
+
+        .history-table th {
+            width: 11.11%;
+            padding: 15px 5px;
+            color: #176b87;
+            background: #f0f7fa;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        /* PATIENT INFORMATION */
+
+        .history-table td {
+            padding: 15px 5px;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 13px;
+            color: #333;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        /* HOVER EFFECT */
+
+        .history-table tbody tr:hover {
+            background: #f2f8fa;
+        }
+
+        /* X-RAY IMAGE */
+
+        .history-image {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+            background: #f1f4f6;
+            padding: 4px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 6px;
+        }
+
+        /* KL GRADE */
+
+        .grade-badge {
+            display: inline-block;
+            background: #e6f4ea;
+            color: #176b35;
+            padding: 7px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* EMPTY HISTORY */
+
+        .empty-history {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            padding: 40px 20px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .empty-history h2,
+        .empty-history p {
+            text-align: center;
+        }
+
+        .empty-history h2 {
+            color: #176b87;
+        }
+
+        .empty-history p {
+            color: #666;
+        }
+
+        .empty-history a {
+            display: inline-block;
+            margin-top: 15px;
+            background: #176b87;
+            color: white;
+            padding: 12px 22px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+
+        @media (max-width: 800px) {
+
+            .history-container {
+                padding: 15px 10px;
+            }
+
+            .history-table-container {
+                padding: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+        <h1>OA Vision AI</h1>
+        <p>Patient Analysis History</p>
+    </header>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="main-navigation">
+
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+
+        <a href="{{ url_for('home') }}">AI Analysis</a>
+
+        <a href="{{ url_for('history') }}" class="active">History</a>
+
+        <a href="{{ url_for('performance') }}">Performance</a>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="history-container">
+
+        <!-- PAGE HEADING -->
+
+        <div class="history-header">
+
+            <h2>Patient History</h2>
+
+            <p>View all previously analysed patient X-ray records.</p>
+
+        </div>
+
+
+        <!-- PATIENT HISTORY -->
+
+        {% if records %}
+
+            {% for record in records %}
+
+            <!-- ONE BOX FOR EACH PATIENT -->
+
+            <div class="history-table-container">
+
+                <table class="history-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Patient ID</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Knee Side</th>
+                            <th>X-ray Image</th>
+                            <th>KL Grade</th>
+                            <th>Confidence</th>
+                            <th>Analysis Date</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                {{ record.get('patient_name') or '—' }}
+                            </td>
+
+                            <td>
+                                {{ record.get('patient_id') or '—' }}
+                            </td>
+
+                            <td>
+                                {{ record.get('age') or '—' }}
+                            </td>
+
+                            <td>
+                                {{ record.get('gender') or '—' }}
+                            </td>
+
+                            <td>
+                                {{ record.get('knee_side') or '—' }}
+                            </td>
+
+                            <td>
+
+                                <a href="{{ url_for('uploaded_xray', filename=record.filename) }}"
+                                   target="_blank">
+
+                                    <img
+                                        class="history-image"
+                                        src="{{ url_for('uploaded_xray', filename=record.filename) }}"
+                                        alt="Patient knee X-ray"
+                                    >
+
+                                </a>
+
+                            </td>
+
+                            <td>
+
+                                <span class="grade-badge">
+                                    Grade {{ record.grade }}
+                                </span>
+
+                            </td>
+
+                            <td>
+                                {{ "%.2f"|format(record.confidence|float) }}%
+                            </td>
+
+                            <td>
+                                {{ record.date }}
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty-history">
+
+                <h2>No Patient Records Found</h2>
+
+                <p>No X-ray analyses have been completed yet.</p>
+
+                <a href="{{ url_for('home') }}">
+                    Start New Analysis
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        <p>OA Vision AI | Research Prototype</p>
+    </footer>
+
+</body>
+
+</html>

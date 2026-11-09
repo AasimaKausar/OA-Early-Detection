@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OA Vision AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>OA Vision AI</h1>
+        <p>AI-Assisted Osteoarthritis Detection System</p>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="main-navigation">
+
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+
+        <a href="{{ url_for('home') }}" class="active">
+            AI Analysis
+        </a>
+
+        <a href="{{ url_for('history') }}">History</a>
+
+        <a href="{{ url_for('performance') }}">Performance</a>
+
+    </nav>
+
+    <main>
+
+        <!-- LEFT SECTION: PATIENT DETAILS AND IMAGE UPLOAD -->
+        <section class="upload-section">
+
+            <h2>Patient Registration</h2>
+
+            <p>Register patient details before starting AI analysis.</p>
+
+            <!-- MAIN FORM -->
+            <form method="POST"
+                  action="{{ url_for('home') }}"
+                  enctype="multipart/form-data"
+                  id="analysisForm">
+
+                <!-- REGISTER PATIENT BUTTON -->
+                <button type="button"
+                        id="registerPatientButton"
+                        class="register-patient-button"
+                        onclick="showPatientForm()">
+
+                    <span>＋</span> Register Patient
+
+                </button>
+
+                <!-- PATIENT REGISTRATION FIELDS -->
+                <div id="patientForm"
+                     class="patient-form"
+                     style="display: none;">
+
+                    <h3>Patient Information</h3>
+
+                    <label for="patient_name">Patient Name *</label>
+
+                    <input
+                        type="text"
+                        id="patient_name"
+                        name="patient_name"
+                        placeholder="Enter patient name"
+                        maxlength="100"
+                        required
+                        disabled
+                    >
+
+                    <label for="patient_id">Patient ID *</label>
+
+                    <input
+                        type="text"
+                        id="patient_id"
+                        name="patient_id"
+                        placeholder="Example: OA001"
+                        maxlength="50"
+                        required
+                        disabled
+                    >
+
+                    <label for="age">Age *</label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        min="1"
+                        max="120"
+                        placeholder="Enter age"
+                        required
+                        disabled
+                    >
+
+                    <label for="gender">Gender</label>
+
+                    <select id="gender"
+                            name="gender"
+                            disabled>
+
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+
+                    </select>
+
+                    <label for="knee_side">Knee Side *</label>
+
+                    <select id="knee_side"
+                            name="knee_side"
+                            required
+                            disabled>
+
+                        <option value="">Select Knee Side</option>
+                        <option value="Left">Left Knee</option>
+                        <option value="Right">Right Knee</option>
+
+                    </select>
+
+                    <p class="registration-note">
+                        Complete the patient details before processing the X-ray.
+                    </p>
+
+                </div>
+
+                <hr>
+
+                <!-- RESTORED IMAGE UPLOAD SECTION -->
+                <h2>Upload Knee X-ray Image</h2>
+
+                <p>Select an X-ray image for osteoarthritis analysis.</p>
+
+                <div class="upload-box">
+
+                    <label for="xray">Choose X-ray Image</label>
+
+                    <input
+                        type="file"
+                        id="xray"
+                        name="xray"
+                        accept=".png,.jpg,.jpeg"
+                        required
+                    >
+
+                    <p id="fileMessage">
+                        No image selected
+                    </p>
+
+                    <!-- IMAGE PREVIEW -->
+                    <div class="image-preview-container">
+
+                        <img
+                            id="imagePreview"
+                            src=""
+                            alt="X-ray Preview"
+                            style="display: none; max-width: 100%;"
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- PROCESS BUTTON -->
+                <button type="submit"
+                        id="processButton"
+                        class="process-button">
+
+                    Process Image
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- RIGHT SECTION: ANALYSIS RESULTS -->
+        <section class="results-section">
+
+            <h2>Analysis Results</h2>
+
+            {% if error %}
+
+                <p class="error-message">
+                    {{ error }}
+                </p>
+
+            {% endif %}
+
+            {% if result %}
+
+                <h3>Patient Details</h3>
+
+                <p>
+                    Patient Name:
+                    <span>{{ result.patient_name }}</span>
+                </p>
+
+                <p>
+                    Patient ID:
+                    <span>{{ result.patient_id }}</span>
+                </p>
+
+                <p>
+                    Age:
+                    <span>{{ result.age }}</span>
+                </p>
+
+                <p>
+                    Gender:
+                    <span>{{ result.gender if result.gender else "Not provided" }}</span>
+                </p>
+
+                <p>
+                    Knee Side:
+                    <span>{{ result.knee_side }}</span>
+                </p>
+
+                <hr>
+
+            {% endif %}
+
+            <p>
+                Uploaded Image:
+
+                <span id="uploadedImage">
+                    {{ result.filename if result else "Not selected" }}
+                </span>
+            </p>
+
+            <p>
+                Processing Status:
+
+                <span id="processingStatus">
+                    {{ "Completed" if result else ("Error" if error else "Waiting for image") }}
+                </span>
+            </p>
+
+            <p>
+                Predicted KL Grade:
+
+                <span id="klGrade">
+                    {{ result.grade if result else "Not available" }}
+                </span>
+            </p>
+
+            {% if result %}
+
+                <p>
+                    Model confidence:
+                    {{ "%.2f"|format(result.confidence) }}%
+                </p>
+
+                <a href="{{ url_for('download_report') }}"
+                   class="download-report-button">
+
+                    Download Report (PDF)
+
+                </a>
+
+            {% endif %}
+
+            <p class="note">
+
+                KL grades range from 0 to 4. This application is a research
+                prototype and does not replace professional medical diagnosis.
+
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>OA Vision AI | Research Prototype</p>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
